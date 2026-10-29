@@ -19,7 +19,8 @@ for (const cat of categories) {
   for (const x of q.tf || []) out.tf.push({ ...x, cat: cat.slug });
 }
 const json = JSON.stringify(out);
-const hash = crypto.createHash('sha1').update(json).digest('hex').slice(0, 10);
+const shell = ['index.html', 'app.js', 'styles.css', 'manifest.webmanifest'].map(f => fs.existsSync(path.join(root, f)) ? fs.readFileSync(path.join(root, f), 'utf8') : '').join('|');
+const hash = crypto.createHash('sha1').update(json + shell).digest('hex').slice(0, 10);
 out.version = hash;
 out.built = new Date().toISOString();
 fs.writeFileSync(path.join(root, 'data.js'), `window.AP_DATA=${JSON.stringify(out)};\n`);

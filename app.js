@@ -410,7 +410,7 @@ function panelCats(body) {
         <div class="grow"><div class="name">${esc(c.name)}</div>
         <div class="meta2"><span class="w">約${c.weight}問</span><span>解説 ${p.seen}/${p.total}</span><span>問題 ${p.tried}/${p.qtotal}</span><span>${p.acc === null ? '正答率 —' : '正答率 ' + p.acc + '%'}</span></div>
         <div class="bar"><i style="width:${p.total ? p.seen / p.total * 100 : 0}%"></i></div></div>
-        <button class="pill act-solo ${S.solo === c.slug ? 'on' : ''}">この分野だけ</button>
+        <button class="pill act-solo ${S.solo === c.slug ? 'on' : ''}">集中</button>
         <button class="toggle ${S.cats[c.slug] ? 'on' : ''}" aria-label="${esc(c.name)}を出題"></button></div>`);
       body.appendChild(row);
     }
