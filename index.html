@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no, maximum-scale=1">
+<title>APスクロール — 応用情報 科目A</title>
+<meta name="description" content="応用情報技術者試験 科目A を縦スクロールで学ぶドゥームスクロール学習アプリ">
+<meta name="theme-color" content="#0a0c10">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="APスクロール">
+<meta name="format-detection" content="telephone=no">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header id="top">
+  <div class="brand"><span class="brand-ap">AP</span><span class="brand-sub">科目A</span></div>
+  <div class="hud">
+    <button class="hud-item" id="hud-goal" title="今日の目標"><span class="ring"><svg viewBox="0 0 36 36"><circle class="ring-bg" cx="18" cy="18" r="15.5"/><circle class="ring-fg" cx="18" cy="18" r="15.5"/></svg><span class="ring-txt" id="goal-txt">0</span></span></button>
+    <div class="hud-item" id="hud-streak">🔥<b id="streak-txt">0</b></div>
+    <div class="hud-item" id="hud-xp"><b id="xp-txt">0</b><small>XP</small></div>
+    <div class="hud-item hud-count" id="hud-count"></div>
+    <button class="hud-item hud-gear" id="btn-settings" aria-label="設定">⚙︎</button>
+  </div>
+  <div id="combo" class="combo" hidden></div>
+</header>
+
+<main id="feed" aria-live="polite"></main>
+
+<nav id="tabs">
+  <button class="tab active" data-tab="feed"><span class="tab-ico">▤</span>フィード</button>
+  <button class="tab" data-tab="cats"><span class="tab-ico">◫</span>分野</button>
+  <button class="tab" data-tab="exam"><span class="tab-ico">⏱</span>模試</button>
+  <button class="tab" data-tab="stats"><span class="tab-ico">◔</span>記録</button>
+</nav>
+
+<section id="sheet" class="sheet" hidden>
+  <div class="sheet-head">
+    <h2 id="sheet-title"></h2>
+    <button class="sheet-close" id="sheet-close" aria-label="閉じる">✕</button>
+  </div>
+  <div class="sheet-body" id="sheet-body"></div>
+</section>
+
+<div id="toast" class="toast" hidden></div>
+<div id="fx" class="fx"></div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

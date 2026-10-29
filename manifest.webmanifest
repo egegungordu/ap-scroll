@@ -1,0 +1,16 @@
+{
+  "name": "APスクロール — 応用情報 科目A",
+  "short_name": "APスクロール",
+  "description": "応用情報技術者試験 科目A を縦スクロールで学ぶ学習アプリ",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0a0c10",
+  "theme_color": "#0a0c10",
+  "lang": "ja",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
