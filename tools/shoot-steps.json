@@ -1,11 +1,11 @@
 [
   { "eval": "localStorage.clear(); location.reload(); 'ok'", "wait": 1500 },
-  { "eval": "(() => { const f=document.getElementById('feed'); const i=[...f.children].findIndex(c=>c.dataset.kind==='concept'); f.scrollTo({top:i*f.clientHeight}); return i; })()", "wait": 900 },
-  { "shot": "12-concept-sticky" },
-  { "eval": "(() => { const f=document.getElementById('feed'); const i=[...f.children].findIndex(c=>c.dataset.kind==='quiz'); f.scrollTo({top:i*f.clientHeight}); const c=f.children[i]; c.querySelectorAll('.choice')[1].click(); return i; })()", "wait": 900 },
-  { "shot": "13-quiz-sticky" },
-  { "eval": "window.AP.startExam(20); 1", "wait": 800 },
-  { "eval": "(() => window.AP.S && document.querySelectorAll('.card').length)()", "log": "exam cards" },
-  { "eval": "(() => { const f=document.getElementById('feed'); f.scrollTo({top:f.clientHeight}); return document.querySelector('.kind').textContent; })()", "wait": 600, "log": "kind" },
-  { "eval": "document.querySelectorAll('.card')[1].querySelector('.kind').textContent", "log": "exam label" }
+  { "shot": "20-welcome" },
+  { "eval": "(() => { const f=document.getElementById('feed'); const ks=[...f.children].map(c=>c.dataset.kind); return ks.join(','); })()", "log": "kinds" },
+  { "eval": "document.querySelector('[data-tab=cats]').click(); 1", "wait": 500 },
+  { "shot": "21-cats" },
+  { "eval": "document.getElementById('sheet-close').click(); window.AP.startExam(80); 1", "wait": 800 },
+  { "eval": "(() => { const f=document.getElementById('feed'); f.scrollTo({top:f.clientHeight}); return document.querySelectorAll('.card')[1].querySelector('.kind').textContent; })()", "wait": 600, "log": "exam" },
+  { "eval": "(() => { const ex=window.AP; const c=document.querySelectorAll('.card')[1]; c.querySelector('.choice').click(); return 1; })()", "wait": 900 },
+  { "eval": "document.querySelectorAll('.card').length", "log": "cards after answer" }
 ]

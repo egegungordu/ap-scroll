@@ -173,7 +173,7 @@ function renderConcept(it) {
     ${it.formula ? `<div class="formula">${fmt(it.formula)}</div>` : ''}
     ${it.points?.length ? `<ul class="points">${it.points.map(p => `<li>${fmt(p)}</li>`).join('')}</ul>` : ''}
     ${it.tip ? `<div class="tip">${fmt(it.tip)}</div>` : ''}
-    <div class="actions">${bkBtn(it.id)}<button class="btn act-quiz" data-concept="${esc(it.id)}">この論点の問題</button>${nextBtn('理解した ↓')}</div>`);
+    <div class="actions">${bkBtn(it.id)}<button class="btn act-quiz" data-concept="${esc(it.id)}">関連問題</button>${nextBtn('理解した ↓')}</div>`);
 }
 function renderQuiz(it, exam) {
   const n = exam ? `${exam.idx + 1}/${exam.qs.length}` : String(++seq).padStart(3, '0');
