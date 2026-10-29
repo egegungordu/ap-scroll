@@ -399,7 +399,7 @@ function catProgress(slug) {
   return { seen, total: cs.length, ok, ng, tried, qtotal: qs.length, acc: ok + ng ? Math.round(ok / (ok + ng) * 100) : null };
 }
 function panelCats(body) {
-  body.innerHTML = `<p>オンにした分野だけフィードに流れます。「この分野だけ」で集中モード。出題目安は本試験80問中の概数です。</p>
+  body.innerHTML = `<p>オンにした分野だけフィードに流れます。「集中」でその分野だけ流す集中モード。出題目安は本試験80問中の概数です。</p>
     ${S.solo ? `<button class="btn on" id="solo-off">🎯 「${esc(catBy[S.solo].name)}」だけ流し中 — 解除</button>` : ''}`;
   for (const m of ['tech', 'mgmt', 'strat']) {
     const cats = CATS.filter(c => c.major === m);
@@ -502,7 +502,7 @@ document.addEventListener('keydown', (e) => {
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('sw.js').then((reg) => {
-      reg.addEventListener('updatefound', () => { const nw = reg.installing; nw?.addEventListener('statechange', () => { if (nw.state === 'installed' && navigator.serviceWorker.controller) { toast('新しい版があります。再読み込みで更新', 4000); nw.postMessage('skipWaiting'); } }); });
+      reg.addEventListener('updatefound', () => { const nw = reg.installing; nw?.addEventListener('statechange', () => { if (nw.state === 'installed' && navigator.serviceWorker.controller) { toast('新しい版があります。タップで更新', 6000); $('#toast').onclick = () => location.reload(); nw.postMessage('skipWaiting'); } }); });
     }).catch(() => {});
     let refreshing = false; navigator.serviceWorker.addEventListener('controllerchange', () => { if (refreshing) return; refreshing = true; });
   });

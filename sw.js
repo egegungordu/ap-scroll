@@ -1,4 +1,4 @@
-const VERSION = '17eb5b2264';
+const VERSION = 'c7f4972a75';
 const CACHE = 'apscroll-' + VERSION;
 const ASSETS = ['./', './index.html', './styles.css', './app.js', './data.js', './manifest.webmanifest', './icons/icon-192.png', './icons/icon-512.png', './icons/apple-touch-icon.png'];
 self.addEventListener('install', (e) => {
