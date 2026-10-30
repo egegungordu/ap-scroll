@@ -1,7 +1,23 @@
 [
   { "eval": "localStorage.clear(); location.reload(); 'ok'", "wait": 1500 },
+  { "shot": "40-welcome" },
+  { "eval": "(() => { const f=document.getElementById('feed'); const i=[...f.children].findIndex(c=>c.dataset.kind==='concept'); f.scrollTo({top:i*f.clientHeight}); return i; })()", "wait": 900 },
+  { "shot": "41-concept" },
+  { "eval": "(() => { const f=document.getElementById('feed'); const i=[...f.children].findIndex(c=>c.dataset.kind==='quiz'); f.scrollTo({top:i*f.clientHeight}); return i; })()", "wait": 900 },
+  { "shot": "42-quiz" },
+  { "eval": "(() => { const f=document.getElementById('feed'); const c=f.children[Math.round(f.scrollTop/f.clientHeight)]; const it=window.AP.D.questions.find(q=>q.id===c.dataset.id); c.querySelectorAll('.choice')[(it.answer+1)%4].click(); return it.answer; })()", "wait": 700 },
+  { "shot": "43-quiz-wrong" },
+  { "eval": "(() => { const f=document.getElementById('feed'); const i=[...f.children].findIndex(c=>c.dataset.kind==='term'); f.scrollTo({top:i*f.clientHeight}); return i; })()", "wait": 900 },
+  { "eval": "(() => { const f=document.getElementById('feed'); const c=f.children[Math.round(f.scrollTop/f.clientHeight)]; c.querySelector('.act-flip').click(); return 1; })()", "wait": 500 },
+  { "shot": "44-term" },
+  { "eval": "(() => { const f=document.getElementById('feed'); const i=[...f.children].findIndex(c=>c.dataset.kind==='tf'); f.scrollTo({top:i*f.clientHeight}); return i; })()", "wait": 900 },
+  { "eval": "(() => { const f=document.getElementById('feed'); const c=f.children[Math.round(f.scrollTop/f.clientHeight)]; const it=window.AP.D.tf.find(q=>q.id===c.dataset.id); c.querySelector('.tf-btn[data-v=\"'+it.answer+'\"]').click(); return 1; })()", "wait": 600 },
+  { "shot": "45-tf-correct" },
   { "eval": "document.querySelector('[data-tab=cats]').click(); 1", "wait": 500 },
-  { "shot": "30-cats-final" },
-  { "eval": "document.getElementById('sheet-close').click(); (() => { const f=document.getElementById('feed'); const i=[...f.children].findIndex(c=>c.dataset.kind==='quiz'); f.scrollTo({top:i*f.clientHeight}); return i; })()", "wait": 900 },
-  { "shot": "31-quiz-final" }
+  { "shot": "46-cats" },
+  { "eval": "document.querySelector('[data-tab=stats]').click(); 1", "wait": 500 },
+  { "shot": "47-stats" },
+  { "eval": "document.getElementById('sheet-close').click(); window.AP.startExam(20); 1", "wait": 800 },
+  { "eval": "(() => { const f=document.getElementById('feed'); f.scrollTo({top:f.clientHeight}); return 1; })()", "wait": 900 },
+  { "shot": "48-exam" }
 ]

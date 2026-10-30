@@ -4,11 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no, maximum-scale=1">
 <title>APスクロール — 応用情報 科目A</title>
-<meta name="description" content="応用情報技術者試験 科目A を縦スクロールで学ぶドゥームスクロール学習アプリ">
-<meta name="theme-color" content="#0a0c10">
+<meta name="description" content="応用情報技術者試験 科目A を縦スクロールで学ぶ学習アプリ">
+<meta name="theme-color" content="#000000">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<!-- "black" (not black-translucent): with black-translucent iOS sizes the standalone WebView to screen height minus the top inset, leaving a dead band above the home indicator. -->
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="APスクロール">
 <meta name="format-detection" content="telephone=no">
 <link rel="manifest" href="manifest.webmanifest">
@@ -18,30 +19,28 @@
 </head>
 <body>
 <header id="top">
-  <div class="brand"><span class="brand-ap">AP</span><span class="brand-sub">科目A</span></div>
+  <div class="countdown"><span id="hud-count"></span></div>
   <div class="hud">
     <button class="hud-item" id="hud-goal" title="今日の目標"><span class="ring"><svg viewBox="0 0 36 36"><circle class="ring-bg" cx="18" cy="18" r="15.5"/><circle class="ring-fg" cx="18" cy="18" r="15.5"/></svg><span class="ring-txt" id="goal-txt">0</span></span></button>
-    <div class="hud-item" id="hud-streak">🔥<b id="streak-txt">0</b></div>
-    <div class="hud-item" id="hud-xp"><b id="xp-txt">0</b><small>XP</small></div>
-    <div class="hud-item hud-count" id="hud-count"></div>
-    <button class="hud-item hud-gear" id="btn-settings" aria-label="設定">⚙︎</button>
+    <div class="hud-item"><b id="streak-txt">0</b><span>日連続</span></div>
+    <div class="hud-item"><b id="xp-txt">0</b><span>pt</span></div>
+    <button class="hud-item hud-gear" id="btn-settings" aria-label="設定"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3h.1a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8v.1a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button>
   </div>
-  <div id="combo" class="combo" hidden></div>
 </header>
 
 <main id="feed" aria-live="polite"></main>
 
 <nav id="tabs">
-  <button class="tab active" data-tab="feed"><span class="tab-ico">▤</span>フィード</button>
-  <button class="tab" data-tab="cats"><span class="tab-ico">◫</span>分野</button>
-  <button class="tab" data-tab="exam"><span class="tab-ico">⏱</span>模試</button>
-  <button class="tab" data-tab="stats"><span class="tab-ico">◔</span>記録</button>
+  <button class="tab active" data-tab="feed"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>フィード</button>
+  <button class="tab" data-tab="cats"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg>分野</button>
+  <button class="tab" data-tab="exam"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l3 2M9 2h6"/></svg>模試</button>
+  <button class="tab" data-tab="stats"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>記録</button>
 </nav>
 
 <section id="sheet" class="sheet" hidden>
   <div class="sheet-head">
     <h2 id="sheet-title"></h2>
-    <button class="sheet-close" id="sheet-close" aria-label="閉じる">✕</button>
+    <button class="sheet-close" id="sheet-close" aria-label="閉じる">閉じる</button>
   </div>
   <div class="sheet-body" id="sheet-body"></div>
 </section>
